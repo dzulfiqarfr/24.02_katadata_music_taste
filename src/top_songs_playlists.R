@@ -7,13 +7,31 @@ here::i_am("src/top_songs_playlists.R")
 library(conflicted)
 library(here)
 library(tidyverse)
-conflict_prefer("filter", "dplyr")
+conflict_prefer("filter", "dplyr", quiet = TRUE)
 library(countries)
 library(spotifyr)
 
 # Data --------------------------------------------------------------------
 
-country_list <- list_countries()
+top_songs_playlist_path <- here("results", "top_songs_playlists.csv")
+
+if (!file.exists(top_songs_playlist_path)) {
+  # When no archives are available, search Top Songs playlist for all countries
+  country_list <- list_countries()
+} else {
+  # Given archives, search for only known available countries to limit requests
+  top_songs_playlists_archive <- read_csv(
+    here("results", "top_songs_playlists.csv"),
+    col_type = list(
+      playlist_id = col_character(),
+      owner_id = col_character()
+    )
+  )
+  
+  country_list <- top_songs_playlists_archive |> 
+    mutate(country = str_remove(playlist_name, "Top\\sSongs\\s-\\s")) |> 
+    pull(country)
+}
 
 # Search the Top Songs playlist for every country
 top_songs_search_result <- map(
