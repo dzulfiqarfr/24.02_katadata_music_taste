@@ -1,13 +1,13 @@
 # Get the tracks in Spotify's Top Songs playlists
 
-here::i_am("src/top_songs_tracks.R")
+suppressMessages(here::i_am("src/top_songs_tracks.R"))
 
 # Packages ----------------------------------------------------------------
 
 library(conflicted)
 library(here)
 library(tidyverse)
-conflict_prefer("filter", "dplyr")
+conflict_prefer("filter", "dplyr", quiet = TRUE)
 library(spotifyr)
 
 # Data --------------------------------------------------------------------
