@@ -37,10 +37,12 @@ major_genre_audio_features <- map(
 
 # Wrangling ---------------------------------------------------------------
 
-major_genre_valence <- major_genre_audio_features |> 
+major_genre_audio_features_clean <- major_genre_audio_features |> 
   bind_rows() |> 
   select(
     track_id = id,
+    duration = duration_ms,
+    speechiness,
     valence
   ) |>
   right_join(
@@ -51,12 +53,12 @@ major_genre_valence <- major_genre_audio_features |>
   group_by(genre, playlist_id) |> 
   distinct(track_id, .keep_all = TRUE) |> 
   ungroup() |>
-  relocate(valence, .after = last_col()) |> 
+  relocate(duration, speechiness, valence, .after = last_col()) |> 
   arrange(genre, playlist_id)
 
 # Export ------------------------------------------------------------------
 
 write_csv(
-  major_genre_valence,
+  major_genre_audio_features_clean,
   here("results", "major_genre_audio_features.csv")
 )
