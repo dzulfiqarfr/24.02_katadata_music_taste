@@ -37,14 +37,15 @@ major_genre_tracks_clean <- major_genre_tracks |>
     track_id = track.id,
     track_name = track.name,
     playlist_id,
+    date_album_release = track.album.release_date,
     timestamp_addition = added_at
   ) |> 
-  left_join(major_genre_playlists) |> 
+  left_join(major_genre_playlists, by = join_by(playlist_id)) |> 
   group_by(genre, playlist_id) |> 
   distinct(track_id, .keep_all = TRUE) |> 
   ungroup() |> 
   select(!c(playlist_name, playlist_description, n_track)) |> 
-  relocate(genre, .before = timestamp_addition)
+  relocate(genre, .before = date_album_release)
 
 # Export ------------------------------------------------------------------
 
