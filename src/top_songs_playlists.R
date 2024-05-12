@@ -1,6 +1,6 @@
 # Get Spotify's Top Songs playlists for all available countries
 
-here::i_am("src/top_songs_playlists.R")
+suppressMessages(here::i_am("src/top_songs_playlists.R"))
 
 # Packages ----------------------------------------------------------------
 
