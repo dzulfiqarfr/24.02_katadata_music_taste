@@ -1,13 +1,13 @@
 # Get sample playlists of selected major genres
 
-here::i_am("src/major_genre_playlists.R")
+suppressMessages(here::i_am("src/major_genre_playlists.R"))
 
 # Packages ----------------------------------------------------------------
 
 library(conflicted)
 library(here)
 library(tidyverse)
-conflict_prefer("filter", "dplyr")
+conflict_prefer("filter", "dplyr", quiet = TRUE)
 library(spotifyr)
 
 # Data --------------------------------------------------------------------
