@@ -1,6 +1,6 @@
 # 24.02_katadata_music_taste
 
-The code and data to produce [Katadata's "Selera Musik di Indonesia Cenderung Lagu Sedih" story](https://katadata.co.id/analisisdata/6287a5383c274/selera-musik-di-indonesia-cenderung-lagu-sedih).
+The code and data to produce Katadata's "[Selera Musik di Indonesia Cenderung Lagu Sedih](https://katadata.co.id/analisisdata/6287a5383c274/selera-musik-di-indonesia-cenderung-lagu-sedih)" story.
 
 > [!NOTE]
 >
@@ -8,24 +8,24 @@ The code and data to produce [Katadata's "Selera Musik di Indonesia Cenderung La
 
 ## Getting started
 
+You need [R](https://cran.r-project.org/) (and [RStudio](https://posit.co/products/open-source/rstudio/)) to produce the analysis. It uses the [renv package](https://rstudio.github.io/renv/index.html) to manage dependencies and ensures reproducibility.
+
 ### Spotify setup
 
-The analysis uses data such as playlists and audio features from Spotify, which are available through its Application Programming Interface (API).
+The analysis uses data such as playlists and audio features from [Spotify](https://open.spotify.com/), which are available through its Application Programming Interface (API).
 
 You need to set up a Spotify account and create an app for its Web API on the developer platform (see [Getting started with Web API](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)). The app is necessary as you'll need its client ID and secret to get an access token to authorize your request.
 
-The following sections describe the pipeline to produce the analysis.
+## Example
+
+You can produce the analysis by running `run_all.R` in the `src` folder. This is the controller script that runs other scripts to perform every step of the analysis from start to finish.
 
 > [!CAUTION]
 >
-> You may need to wait for several hours before running the script for requesting audio features after running scripts requesting playlists and tracks, given the rate limit (see [Rate Limits](https://developer.spotify.com/documentation/web-api/concepts/rate-limits)).
+> You may hit the API's rate limit when running the scripts (multiple times within a short period) (see [Rate Limits](https://developer.spotify.com/documentation/web-api/concepts/rate-limits)). In such cases, you have to wait for several hours before you can successfully make a request again.
 
-### Top Songs playlists
+You can run the script in your RStudio interactively or using the console like so.
 
-1.  Run `top_songs_playlists.R` in the `src` folder to get the catalog information of the Top Songs playlist for all available countries.
-2.  Run `top_songs_tracks.R` in the `src` folder to get the information of each track in every Top Songs playlist.
-
-### Major genres
-
-1.  Run `major_genre_playlists.R` in the `src` folder to get the sample playlists of selected major genres.
-2.  Run `major_genre_tracks.R` in the `src` folder to get the information of the tracks in every sample playlist.
+``` r
+source("src/run_all.R")
+```
