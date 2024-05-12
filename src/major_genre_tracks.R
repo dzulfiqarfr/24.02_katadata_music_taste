@@ -1,13 +1,13 @@
 # Get the tracks of sample major genre playlists
 
-here::i_am("src/major_genre_tracks.R")
+suppressMessages(here::i_am("src/major_genre_tracks.R"))
 
 # Packages ----------------------------------------------------------------
 
 library(conflicted)
 library(here)
 library(tidyverse)
-conflict_prefer("filter", "dplyr")
+conflict_prefer("filter", "dplyr", quiet = TRUE)
 library(spotifyr)
 
 # Data --------------------------------------------------------------------
@@ -29,6 +29,7 @@ major_genre_tracks <- map(
 
 # Wrangling ---------------------------------------------------------------
 
+# Drop duplicated tracks within a playlist
 major_genre_tracks_clean <- major_genre_tracks |> 
   bind_rows(.id = "playlist_id") |> 
   as_tibble() |> 
@@ -39,6 +40,9 @@ major_genre_tracks_clean <- major_genre_tracks |>
     timestamp_addition = added_at
   ) |> 
   left_join(major_genre_playlists) |> 
+  group_by(genre, playlist_id) |> 
+  distinct(track_id, .keep_all = TRUE) |> 
+  ungroup() |> 
   select(!c(playlist_name, playlist_description, n_track)) |> 
   relocate(genre, .before = timestamp_addition)
 
