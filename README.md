@@ -8,7 +8,11 @@ The code and data to produce Katadata's "[Selera Musik di Indonesia Cenderung La
 
 ## Getting started
 
-You need [R](https://cran.r-project.org/) (and [RStudio](https://posit.co/products/open-source/rstudio/)) to produce the analysis. It uses the [renv package](https://rstudio.github.io/renv/index.html) to manage dependencies and ensures reproducibility.
+You need [R](https://cran.r-project.org/) (and [RStudio](https://posit.co/products/open-source/rstudio/)) to run this analysis project.
+
+Since this repository is an R project, open `24.02_katadata_music_taste.Rproj` to launch it.
+
+The project uses the [renv package](https://rstudio.github.io/renv/index.html) to manage dependencies and ensures reproducibility.
 
 ### Spotify setup
 
@@ -16,16 +20,20 @@ The analysis uses data such as playlists and audio features from [Spotify](https
 
 You need to set up a Spotify account and create an app for its Web API on the developer platform (see [Getting started with Web API](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)). The app is necessary as you'll need its client ID and secret to get an access token to authorize your request.
 
+Then, you need to supply the client ID and secret to the [spotifyr package](https://www.rcharlie.com/spotifyr/) (see [Authorization code flow](https://www.rcharlie.com/spotifyr/#authorization-code-flow)).
+
 ## Example
 
 You can produce the analysis by running `run_all.R` in the `src` folder. This is the controller script that runs other scripts to perform every step of the analysis from start to finish.
 
 > [!CAUTION]
 >
-> You may hit the API's rate limit when running the scripts (multiple times within a short period) (see [Rate Limits](https://developer.spotify.com/documentation/web-api/concepts/rate-limits)). In such cases, you have to wait for several hours before you can successfully make a request again.
+> You may hit the API's rate limit when running the scripts multiple times within a short period (see [Rate Limits](https://developer.spotify.com/documentation/web-api/concepts/rate-limits)). In such cases, you have to wait for several hours before you can successfully make a request again.
 
 You can run the script in your RStudio interactively or using the console like so.
 
 ``` r
 source("src/run_all.R")
 ```
+
+You can also run each script individually.
