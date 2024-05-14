@@ -1,4 +1,4 @@
-# Get the danceability and valence of tracks in sample major genre playlists
+# Get the audio features of tracks in sample major genre playlists
 
 suppressMessages(here::i_am("src/major_genre_audio_features.R"))
 
