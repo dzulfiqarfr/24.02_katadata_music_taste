@@ -1,4 +1,4 @@
-# 24.02_katadata_music_taste
+# Music taste
 
 The code and data to produce Katadata's "[Selera Musik di Indonesia Cenderung Lagu Sedih](https://katadata.co.id/analisisdata/6287a5383c274/selera-musik-di-indonesia-cenderung-lagu-sedih)" story.
 
