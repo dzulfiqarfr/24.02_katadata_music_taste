@@ -23,7 +23,10 @@ count_tracks <- function(data, x, bin_width) {
     dplyr::count(bins = ggplot2::cut_width({{ x }}, bin_width)) |> 
     dplyr::ungroup() |> 
     dplyr::mutate(
-      bins_clean_punctuations = stringr::str_remove_all(bins, "(^\\()|(\\]$)"),
+      bins_clean_punctuations = stringr::str_remove_all(
+        bins,
+        "(^\\[)|(^\\()|(\\]$)")
+      ,
       valence_group = stringr::str_replace(bins_clean_punctuations, ",", " - ")
     ) |> 
     dplyr::select(
