@@ -33,10 +33,10 @@ major_genre_audio_features_clean <- major_genre_audio_features |>
   distinct(track_id, .keep_all = TRUE) |> # Drop duplicated tracks within genres
   ungroup() |> 
   mutate(
-    year_album_release = as.integer(str_sub(date_track_release, end = 4L))
+    year_album_release = as.integer(str_sub(date_album_release, end = 4L))
   ) |> 
   filter(year_album_release >= 1940) |> # Tracks with wrong release year
-  relocate(year_album_release, .before = date_track_release)
+  relocate(year_album_release, .before = date_album_release)
 
 # Analysis ----------------------------------------------------------------
 
