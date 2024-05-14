@@ -2,7 +2,7 @@ here::i_am("src/run_all.R")
 
 # Helper ------------------------------------------------------------------
 
-run <- function(file_name, message) {
+run <- function(file_name) {
   stopifnot(is.character(file_name))
   
   source(here::here("src", file_name))
