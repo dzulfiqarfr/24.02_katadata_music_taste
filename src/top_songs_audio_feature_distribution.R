@@ -27,11 +27,11 @@ count_tracks <- function(data, x, bin_width) {
         bins,
         "(^\\[)|(^\\()|(\\]$)")
       ,
-      valence_group = stringr::str_replace(bins_clean_punctuations, ",", " - ")
+      "{{x}}_group" := stringr::str_replace(bins_clean_punctuations, ",", " - ")
     ) |> 
     dplyr::select(
       playlist_name,
-      valence_group,
+      tidyr::ends_with("_group"),
       n_track = n
     )
 }
