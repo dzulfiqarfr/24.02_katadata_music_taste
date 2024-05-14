@@ -3,9 +3,9 @@ here::i_am("src/run_all.R")
 # Helper ------------------------------------------------------------------
 
 run <- function(file_name, message) {
-  base::stopifnot(base::is.character(file_name))
+  stopifnot(is.character(file_name))
   
-  base::source(here::here("src", file_name))
+  source(here::here("src", file_name))
 }
 
 # Data --------------------------------------------------------------------
