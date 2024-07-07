@@ -37,3 +37,7 @@ source("src/run_all.R")
 ```
 
 You can also run each script individually.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md).
